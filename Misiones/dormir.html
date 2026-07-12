@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Misión Rumbo a la Cama! - Infografía Infantil</title>
+    <!-- Tailwind CSS para el diseño rápido y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para los iconos de robots y baño -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Letra divertida y legible para niños -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Tone.js para efectos de sonido divertidos de robots -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #f5f3ff;
+        }
+        /* Configuración para el tamaño A4 exacto en impresión */
+        @media print {
+            body {
+                background-color: #ffffff;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .a4-page {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 10mm;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+            }
+        }
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            max-width: 100%;
+            background: linear-gradient(135deg, #fae8ff 0%, #faf5ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .title-font {
+            font-family: 'Outfit', sans-serif;
+        }
+        .step-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-slate-950">
+
+    <!-- Botón de Control Excluido de la Impresión -->
+    <div class="no-print mb-4 flex gap-4">
+        <button onclick="window.print()" class="px-6 py-3 bg-fuchsia-600 text-white font-bold rounded-full shadow-lg hover:bg-fuchsia-700 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-print"></i> Imprimir en Tamaño A4
+        </button>
+        <button onclick="completarMision()" class="px-6 py-3 bg-purple-600 text-white font-bold rounded-full shadow-lg hover:bg-purple-700 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ¡Modo Interactivo!
+        </button>
+    </div>
+
+    <!-- PÁGINA A4 PRINCIPAL -->
+    <div id="canvas-a4" class="a4-page shadow-2xl rounded-3xl border-8 border-fuchsia-400 p-6 flex flex-col justify-between relative bg-white">
+        
+        <!-- Elementos Decorativos de Fondo (Burbujas, Estrellas y Engranajes) -->
+        <div class="absolute top-10 left-5 text-fuchsia-200 text-4xl opacity-50 animate-bounce"><i class="fa-solid fa-moon"></i></div>
+        <div class="absolute top-40 right-8 text-purple-200 text-3xl opacity-40"><i class="fa-solid fa-gears"></i></div>
+        <div class="absolute bottom-20 left-10 text-pink-200 text-5xl opacity-40"><i class="fa-solid fa-bed"></i></div>
+        <div class="absolute bottom-40 right-6 text-indigo-200 text-4xl opacity-50"><i class="fa-solid fa-star"></i></div>
+        
+        <!-- Elementos cósmicos flotantes -->
+        <div class="absolute top-1/4 left-1/12 w-4 h-4 bg-purple-300 rounded-full opacity-40"></div>
+        <div class="absolute top-1/2 right-1/4 w-6 h-6 bg-pink-300 rounded-full opacity-30"></div>
+        <div class="absolute bottom-1/3 right-12 w-3 h-3 bg-indigo-300 rounded-full opacity-50"></div>
+
+        <!-- CABECERA -->
+        <div class="text-center relative z-10">
+            <div class="inline-block bg-fuchsia-500 text-white text-xs px-4 py-1 rounded-full uppercase tracking-widest font-bold mb-2 shadow-sm">
+                🤖 SISTEMA DE APAGADO DE CIRCUITOS
+            </div>
+            <h1 class="title-font text-4xl font-extrabold text-slate-800 tracking-tight leading-none drop-shadow-sm">
+                ¡MISIÓN: <span class="text-fuchsia-500">RUMBO A LA CAMA</span>! 💤
+            </h1>
+            <p class="text-sm text-slate-500 mt-1">Sigue el mapa estelar con tu tripulación para una noche de dulces sueños de acero.</p>
+        </div>
+
+        <!-- MENSAJE MOTIVADOR SUPERIOR (Letra grande y espacio optimizado) -->
+        <div class="text-center bg-amber-50 border-2 border-dashed border-amber-300 rounded-2xl py-1 px-4 mx-6 my-0.5 z-10">
+            <span class="text-amber-800 text-sm md:text-base font-bold">
+                🌟 ¡Preparando el súper motor del cerebro para el despegue de mañana!<br>¡A por ello!
+            </span>
+        </div>
+
+        <!-- LISTA DE PASOS (Estructura de 5 Pasos en Formato Vertical) -->
+        <div class="grid grid-cols-1 gap-3 my-2 z-10 px-4">
+            
+            <!-- PASO 1 -->
+            <div id="step-1" class="step-card flex items-center bg-white border-2 border-pink-200 rounded-2xl p-3 shadow-sm hover:border-pink-400">
+                <div class="flex-shrink-0 w-12 h-12 bg-pink-500 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white">
+                    1
+                </div>
+                <!-- Avatar SVG: Cepillo para Incisivos/Caninos -->
+                <div class="w-16 h-16 mx-3 flex items-center justify-center bg-pink-100 rounded-xl border border-pink-200">
+                    <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="18" y="16" width="28" height="24" rx="4" fill="#EC4899" stroke="#9D174D" stroke-width="2"/>
+                        <!-- Ojos felices -->
+                        <path d="M24 24 Q27 21 30 24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M34 24 Q37 21 40 24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Boca cerrada enseñando dientes -->
+                        <rect x="24" y="29" width="16" height="6" rx="1" fill="white" stroke="#9D174D" stroke-width="1.5"/>
+                        <line x1="32" y1="29" x2="32" y2="35" stroke="#9D174D" stroke-width="1"/>
+                        <line x1="28" y1="29" x2="28" y2="35" stroke="#9D174D" stroke-width="1"/>
+                        <line x1="36" y1="29" x2="36" y2="35" stroke="#9D174D" stroke-width="1"/>
+                        <!-- Cepillo subiendo/bajando -->
+                        <rect x="12" y="32" width="22" height="4" rx="1" fill="#F472B6" stroke="#9D174D" stroke-width="1"/>
+                        <!-- Cerdas del cepillo -->
+                        <rect x="22" y="29" width="10" height="3" fill="white"/>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-sm font-bold text-pink-700 uppercase tracking-wide">Paso de la Conga Dental</h3>
+                    <p class="text-slate-700 text-sm font-semibold leading-snug">
+                        Cepilla tus <span class="text-pink-600 font-bold">incisivos y caninos</span>: usa una bolita de pasta, cierra los dientes, abre tus labios y cepilla arriba y abajo como si fueras una Conga.
+                    </p>
+                </div>
+                <div class="px-2 text-right text-xs text-pink-500 font-bold hidden md:block">
+                    ¡Ritmo! 🕺
+                </div>
+            </div>
+
+            <!-- PASO 2 -->
+            <div id="step-2" class="step-card flex items-center bg-white border-2 border-purple-200 rounded-2xl p-3 shadow-sm hover:border-purple-400">
+                <div class="flex-shrink-0 w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white">
+                    2
+                </div>
+                <!-- Avatar SVG: Cepillo para Muelas -->
+                <div class="w-16 h-16 mx-3 flex items-center justify-center bg-purple-100 rounded-xl border border-purple-200">
+                    <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="18" y="16" width="28" height="24" rx="4" fill="#8B5CF6" stroke="#5B21B6" stroke-width="2"/>
+                        <circle cx="27" cy="23" r="3" fill="white"/>
+                        <circle cx="37" cy="23" r="3" fill="white"/>
+                        <!-- Boca abierta grande -->
+                        <circle cx="32" cy="33" r="5" fill="#4C1D95"/>
+                        <!-- Cepillo de lado -->
+                        <path d="M44 33 H26" stroke="#A78BFA" stroke-width="3" stroke-linecap="round"/>
+                        <rect x="26" y="30" width="8" height="3" fill="white"/>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-sm font-bold text-purple-700 uppercase tracking-wide">Escaneo de Muelas</h3>
+                    <p class="text-slate-700 text-sm font-semibold leading-snug">
+                        Cepilla tus <span class="text-purple-600 font-bold">muelas</span>: abre grande y frota tus muelas arriba y abajo en ambos lados de tu boca.
+                    </p>
+                </div>
+                <div class="px-2 text-right text-xs text-purple-500 font-bold hidden md:block">
+                    ¡A frotar! 🪥
+                </div>
+            </div>
+
+            <!-- PASO 3 -->
+            <div id="step-3" class="step-card flex items-center bg-white border-2 border-fuchsia-200 rounded-2xl p-3 shadow-md border-l-8 border-l-fuchsia-400 hover:border-fuchsia-400">
+                <div class="flex-shrink-0 w-12 h-12 bg-fuchsia-500 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white">
+                    3
+                </div>
+                <!-- Avatar SVG: Limpieza y Orden -->
+                <div class="w-16 h-16 mx-3 flex items-center justify-center bg-fuchsia-100 rounded-xl border border-fuchsia-200">
+                    <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="18" y="20" width="28" height="24" rx="4" fill="#D946EF" stroke="#86198F" stroke-width="2"/>
+                        <circle cx="27" cy="28" r="3" fill="white"/>
+                        <circle cx="37" cy="28" r="3" fill="white"/>
+                        <!-- Sonrisa alegre -->
+                        <path d="M28 34 Q32 37 36 34" stroke="white" stroke-width="2"/>
+                        <!-- Vaso de enjuagar -->
+                        <path d="M12 36 L14 48 H22 L24 36 Z" fill="#F5D0FE" stroke="#86198F" stroke-width="1.5"/>
+                        <path d="M14 40 H22" stroke="#D946EF" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-sm font-bold text-fuchsia-700 uppercase tracking-wide">Autolimpieza e Higiene</h3>
+                    <p class="text-slate-700 text-sm font-bold leading-snug">
+                        Enjuaga tu boca con agua, recoge tu cepillo, tu pasta y déjalo todo limpio.
+                    </p>
+                </div>
+                <div class="px-2 text-right text-xs text-fuchsia-500 font-bold hidden md:block">
+                    ¡Espejo brillante! ✨
+                </div>
+            </div>
+
+            <!-- PASO 4 -->
+            <div id="step-4" class="step-card flex items-center bg-white border-2 border-indigo-200 rounded-2xl p-3 shadow-sm hover:border-indigo-400">
+                <div class="flex-shrink-0 w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white">
+                    4
+                </div>
+                <!-- Avatar SVG: Robot en Baño (Pipi) -->
+                <div class="w-16 h-16 mx-3 flex items-center justify-center bg-indigo-100 rounded-xl border border-indigo-200">
+                    <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="16" width="24" height="24" rx="4" fill="#6366F1" stroke="#3730A3" stroke-width="2"/>
+                        <circle cx="28" cy="24" r="2.5" fill="white"/>
+                        <circle cx="36" cy="24" r="2.5" fill="white"/>
+                        <path d="M28 32 H36" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <!-- WC icónico -->
+                        <path d="M42 34 H48 V46 H38 Z" fill="#E0E7FF" stroke="#3730A3" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-sm font-bold text-indigo-700 uppercase tracking-wide">Vaciado de Tanques</h3>
+                    <p class="text-slate-700 text-sm font-semibold leading-snug">
+                        Haz pipi para que tu cuerpo esté ligero y cómodo toda la noche.
+                    </p>
+                </div>
+                <div class="px-2 text-right text-xs text-indigo-500 font-bold hidden md:block">
+                    ¡Listo para dormir! 🚽
+                </div>
+            </div>
+
+            <!-- PASO 5 -->
+            <div id="step-5" class="step-card flex items-center bg-white border-2 border-violet-200 rounded-2xl p-3 shadow-sm hover:border-violet-400">
+                <div class="flex-shrink-0 w-12 h-12 bg-violet-500 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white">
+                    5
+                </div>
+                <!-- Avatar SVG: Robot leyendo en la cama con estrellas -->
+                <div class="w-16 h-16 mx-3 flex items-center justify-center bg-violet-100 rounded-xl border border-violet-200">
+                    <svg class="w-12 h-12 animate-pulse" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Almohada y cama -->
+                        <rect x="10" y="36" width="44" height="16" rx="4" fill="#DDD6FE" stroke="#5B21B6" stroke-width="2"/>
+                        <rect x="14" y="28" width="12" height="10" rx="2" fill="white" stroke="#5B21B6" stroke-width="1.5"/>
+                        <!-- Cabeza de robot -->
+                        <rect x="22" y="20" width="22" height="18" rx="3" fill="#8B5CF6" stroke="#5B21B6" stroke-width="2"/>
+                        <circle cx="29" cy="27" r="2" fill="white"/>
+                        <circle cx="37" cy="27" r="2" fill="white"/>
+                        <!-- Libro -->
+                        <path d="M24 35 L32 38 L40 35 L40 44 L32 46 L24 44 Z" fill="#EDE9FE" stroke="#5B21B6" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-sm font-bold text-violet-700 uppercase tracking-wide">Modo Hibernación e Imaginación</h3>
+                    <p class="text-slate-700 text-sm font-semibold leading-snug">
+                        Ve a tu cama, abre tu libro favorito para leer y prepárate para soñar.
+                    </p>
+                </div>
+                <div class="px-2 text-right text-xs text-violet-500 font-bold hidden md:block">
+                    ¡A soñar! 📚
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MENSAJE DE REFUERZO POSITIVO EN LA PARTE INFERIOR -->
+        <div class="flex items-center justify-around bg-gradient-to-r from-fuchsia-100 to-purple-100 border-t-4 border-fuchsia-400 p-3 rounded-2xl mx-2 z-10">
+            <div class="text-center">
+                <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Estado del Robot</p>
+                <p class="text-fuchsia-600 font-extrabold text-base">🔋 Modo Hibernación Activado</p>
+            </div>
+            <div class="h-8 w-1 bg-fuchsia-300 rounded"></div>
+            <div class="text-center">
+                <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Misión de Mañana</p>
+                <p class="text-indigo-600 font-extrabold text-base">☀️ ¡Despertar lleno de súper ideas!</p>
+            </div>
+        </div>
+
+        <!-- MARCA INFANTIL DE CONTROL -->
+        <div class="flex justify-between items-center text-[10px] text-slate-400 px-4 mt-1 border-t border-slate-100 pt-2">
+            <span>Diseñado para el Piloto espacial más fantástico del Universo 🚀</span>
+            <span class="font-bold text-fuchsia-500 uppercase">★ Rutina de Noche: ¡Misión Completada! ★</span>
+        </div>
+
+    </div>
+
+    <!-- Modal de Felicitación Custom (Reemplazo amigable de la ventana de alerta) -->
+    <div id="modal-felicitacion" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 hidden no-print">
+        <div class="bg-white border-4 border-fuchsia-400 p-6 rounded-3xl max-w-sm text-center shadow-2xl m-4 transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="text-6xl mb-4 animate-bounce">🤖🛌💤</div>
+            <h3 class="title-font text-2xl font-extrabold text-slate-800 mb-2">¡Misión Cama Lograda!</h3>
+            <p class="text-slate-600 font-semibold mb-6">Todos tus circuitos están perfectamente limpios y listos para soñar. ¡Has completado todas tus tareas como un súper robot estelar! Buen descanso, capitán. 🌌</p>
+            <button onclick="cerrarModal()" class="px-6 py-2 bg-fuchsia-500 text-white font-bold rounded-full shadow-md hover:bg-fuchsia-600 transition-all">
+                ¡Iniciar Sueño Estelar! 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- SCRIPT INTERACTIVO PARA MOTIVACIÓN EXTRA -->
+    <script>
+        // Función para reproducir sonido robótico feliz
+        function playSuccessSound() {
+            try {
+                if (window.Tone) {
+                    if (Tone.context.state !== 'running') {
+                        Tone.start();
+                    }
+                    const synth = new Tone.Synth({
+                        oscillator: { type: "triangle" },
+                        envelope: { attack: 0.02, decay: 0.1, sustain: 0.1, release: 0.15 }
+                    }).toDestination();
+                    
+                    const now = Tone.now();
+                    // Sonido mágico de robot espacial ascendente
+                    synth.triggerAttackRelease("E5", "16n", now);
+                    synth.triggerAttackRelease("G#5", "16n", now + 0.08);
+                    synth.triggerAttackRelease("B5", "8n", now + 0.16);
+                } else {
+                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    const now = audioCtx.currentTime;
+                    const playTone = (freq, duration, delay) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + delay);
+                        gain.gain.setValueAtTime(0.06, now + delay);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + delay + duration);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + delay);
+                        osc.stop(now + delay + duration);
+                    };
+                    playTone(659.25, 0.08, 0);      // E5
+                    playTone(830.61, 0.08, 0.08);   // G#5
+                    playTone(987.77, 0.15, 0.16);   // B5
+                }
+            } catch (e) {
+                console.log("Audio deshabilitado o bloqueado por interacción del navegador", e);
+            }
+        }
+
+        // Función interactiva para marcar pasos
+        document.querySelectorAll('.step-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('bg-fuchsia-50');
+                card.classList.toggle('border-fuchsia-500');
+                card.classList.toggle('scale-[1.02]');
+                
+                let badge = card.querySelector('div:first-child');
+                if (card.classList.contains('border-fuchsia-500')) {
+                    badge.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    badge.classList.remove('bg-pink-500', 'bg-purple-500', 'bg-fuchsia-500', 'bg-indigo-500', 'bg-violet-500');
+                    badge.classList.add('bg-emerald-500');
+                    
+                    playSuccessSound();
+                } else {
+                    let stepNum = card.id.split('-')[1];
+                    badge.innerText = stepNum;
+                    badge.classList.remove('bg-emerald-500');
+                    
+                    const colors = {
+                        '1': 'bg-pink-500',
+                        '2': 'bg-purple-500',
+                        '3': 'bg-fuchsia-500',
+                        '4': 'bg-indigo-500',
+                        '5': 'bg-violet-500'
+                    };
+                    badge.classList.add(colors[stepNum]);
+                }
+            });
+        });
+
+        function completarMision() {
+            document.querySelectorAll('.step-card').forEach(card => {
+                if (!card.classList.contains('border-fuchsia-500')) {
+                    card.classList.add('bg-fuchsia-50', 'border-fuchsia-500');
+                    let badge = card.querySelector('div:first-child');
+                    badge.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    badge.classList.remove('bg-pink-500', 'bg-purple-500', 'bg-fuchsia-500', 'bg-indigo-500', 'bg-violet-500');
+                    badge.classList.add('bg-emerald-500');
+                }
+            });
+            
+            playSuccessSound();
+            document.getElementById('modal-felicitacion').classList.remove('hidden');
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-felicitacion').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
